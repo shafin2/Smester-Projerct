@@ -10,10 +10,8 @@ import java.io.IOException;
 public class Driver extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
+        stage.setTitle("Al-Rehman Store");
+        stage.setScene(LoginScene.getScene());
         stage.show();
     }
 
