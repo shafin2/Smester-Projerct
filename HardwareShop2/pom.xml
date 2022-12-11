@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>alpha</groupId>
-    <artifactId>HardwareShop</artifactId>
+    <groupId>com.example</groupId>
+    <artifactId>HardwareShop2</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>HardwareShop</name>
+    <name>HardwareShop2</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>alpha.hardwareshop/alpha.hardwareshop.HelloApplication</mainClass>
+                            <mainClass>com.example.hardwareshop2/com.example.hardwareshop2.Driver</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
