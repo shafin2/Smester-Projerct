@@ -1,5 +1,6 @@
 package com.example.hardwareshop2.Controllers;
 
+import com.example.hardwareshop2.Driver;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -8,6 +9,7 @@ import javafx.scene.paint.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoginController {
@@ -69,6 +71,11 @@ public class LoginController {
                     if(username.getText().compareTo(user.getUserName())==0 && password.getText().compareTo(user.getPassword())==0){
                         userToken=0;
                         psdToken=0;
+                        try {
+                            Driver.changeScene("MainScreen.fxml");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                         break;
                     }
                 }
