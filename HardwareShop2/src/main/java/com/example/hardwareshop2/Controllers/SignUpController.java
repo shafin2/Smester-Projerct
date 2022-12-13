@@ -3,10 +3,13 @@ package com.example.hardwareshop2.Controllers;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import com.example.hardwareshop2.Driver;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -67,6 +70,10 @@ public class SignUpController {
         usernameError.setOpacity(0);
     }
     @FXML
+    void backFunction(MouseEvent event) throws IOException {
+        Driver.changeScene("MainView.fxml");
+    }
+    @FXML
     void submitFunction(MouseEvent event) {
 //        System.out.println(dateField.getValue());
         nameError.setTextFill(Color.RED);
@@ -86,8 +93,11 @@ public class SignUpController {
                     try {
                         FileWriter fw=new FileWriter(file,true);
                         BufferedWriter bw=new BufferedWriter(fw);
-                        String str=user+" " +usernameField.getText()+" "+passwordField.getText()+" "+nameField.getText()+" "+dateField.getValue()+"\n";
+                        String str=user+"&" +usernameField.getText()+"&"+passwordField.getText()+"&"+nameField.getText()+"&"+dateField.getValue()+"\n";
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Account is created!");
+                        alert.showAndWait();
                         bw.write(str);
+                        Driver.changeScene("MainView.fxml");
                         bw.close();
                         fw.close();
                     }

@@ -1,12 +1,21 @@
 package com.example.hardwareshop2.Controllers;
 
 public class User {
-    public User(String userType, String userName, String password) {
+    public User(String userType,String userName,String password,String name, Date dateOfJoining) {
+        this.name=name;
         this.userType = userType;
         this.userName = userName;
         this.password = password;
+        this.dateOfJoining=dateOfJoining;
     }
 
+    public Date getDateOfJoining() {
+        return dateOfJoining;
+    }
+
+    public String getName() {
+        return name;
+    }
     public String getUserType() {
         return userType;
     }
@@ -15,6 +24,13 @@ public class User {
         this.userType = userType;
     }
 
+    public void setDateOfJoining(Date dateOfJoining) {
+        this.dateOfJoining = dateOfJoining;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     public String getUserName() {
         return userName;
     }
@@ -34,4 +50,7 @@ public class User {
     private String userType;
     private String userName;
     private String password;
+    private Date dateOfJoining;
+    private String name;
+
 }

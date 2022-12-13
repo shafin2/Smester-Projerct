@@ -18,13 +18,17 @@ public class LoginController {
 
     static {
         //read user details
+        readData();
+    }
+     private static void readData(){
         try {
             FileReader fr=new FileReader(file);
             BufferedReader br=new BufferedReader(fr);
             String str="";
             while ((str=br.readLine())!=null){
-                String[] data=str.split(" ");
-                users.add(new User(data[0],data[1],data[2]));
+                String[] data=str.split("&");
+                String[] date=data[4].split("-");
+                users.add(new User(data[0],data[1],data[2],data[3],new Date(Integer.parseInt(date[0]),Integer.parseInt(date[1]),Integer.parseInt(date[2]))));
             }
 
             br.close();
@@ -47,6 +51,7 @@ public class LoginController {
 
     @FXML
     void submitButton(MouseEvent event) {
+        readData();
         passwordMsg.setTextFill(Color.RED);
         usernameMsg.setTextFill(Color.RED);
         if(username.getText()=="" || password.getText()==""){
