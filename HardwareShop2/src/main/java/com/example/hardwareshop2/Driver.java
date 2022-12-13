@@ -9,15 +9,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Driver extends Application {
-    public static Stage stage;
+    public static Stage stage1;
+    public static void changeScene(String str) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource(str));
+        Scene scene=new Scene(fxmlLoader.load());
+        stage1.setScene(scene);
+    }
     @Override
     public void start(Stage stage) throws IOException {
-       this.stage=stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("login-view.fxml"));
-        Scene scene=new Scene(fxmlLoader.load());
-        stage.setTitle("Al-Rehman Store");
-        stage.setScene(scene);
-        stage.show();
+       this.stage1=stage;
+        stage1.setTitle("Al-Rehman Store");
+        changeScene("login-view.fxml");
+        stage1.show();
     }
 
     public static void main(String[] args) {
