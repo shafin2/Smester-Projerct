@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="650.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hardwareshop2.SignIn">
+   <children>
+      <SplitPane dividerPositions="0.18917112299465239" orientation="VERTICAL" prefHeight="650.0" prefWidth="500.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="400.0" style="-fx-background-color: orange;">
+               <children>
+                  <Line endX="490.4000244140625" endY="108.69288635253906" layoutX="8.0" layoutY="1.0" startX="-8.800005912780762" startY="108.6928939819336" stroke="#fffdfd" strokeWidth="4.0" AnchorPane.topAnchor="115.0" />
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="54.0" prefWidth="206.0" text="Sign Up" textFill="#fffafa" AnchorPane.leftAnchor="15.0">
+                     <font>
+                        <Font name="Arial Black" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="75.0" text="Please Fill in this form to Create an Account" textFill="WHITE" AnchorPane.leftAnchor="15.0">
+                     <font>
+                        <Font name="Verdana Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="496.0" prefWidth="400.0">
+               <children>
+                  <TextField layoutX="32.0" layoutY="59.0" prefHeight="31.0" prefWidth="369.0" promptText="ex: Ahmad Ali" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="59.0" />
+                  <Label layoutX="36.0" layoutY="24.0" text="Name *">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="107.0" layoutY="20.0" opacity="0.0" prefHeight="25.0" prefWidth="206.0" text="This field is Manadatory*">
+                     <font>
+                        <Font name="Verdana Bold Italic" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="31.0" layoutY="95.0" text="Username *" AnchorPane.topAnchor="100.0">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="32.0" layoutY="126.0" prefHeight="31.0" prefWidth="370.0" promptText="ex: Ahmedali123" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="126.0" />
+                  <Label layoutX="35.0" layoutY="170.0" text="Date of joining" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="170.0">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker layoutX="35.0" layoutY="196.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="196.0" />
+                  <Label layoutX="34.0" layoutY="284.0" text="Password *">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                  </Label>
+                  <PasswordField layoutX="32.0" layoutY="315.0" prefHeight="31.0" prefWidth="370.0" AnchorPane.topAnchor="315.0" />
+                  <TextField layoutX="132.0" layoutY="280.0" opacity="0.02" prefHeight="25.0" prefWidth="234.0" text="This field is Manadatory*">
+                     <font>
+                        <Font name="Verdana Bold Italic" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="32.0" layoutY="361.0" text="Confirm Password *">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                  </Label>
+                  <PasswordField layoutX="32.0" layoutY="390.0" prefHeight="31.0" prefWidth="370.0" AnchorPane.topAnchor="390.0" />
+                  <TextField layoutX="197.0" layoutY="357.0" opacity="0.0" prefHeight="25.0" prefWidth="196.0" text="This field is Manadatory*">
+                     <font>
+                        <Font name="Verdana Bold Italic" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="32.0" layoutY="240.0" text="User Type *">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                  </Label>
+                  <SplitMenuButton layoutX="151.0" layoutY="240.0" mnemonicParsing="false" text="Select">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Employee" />
+                      <MenuItem mnemonicParsing="false" text="Admin" />
+                    </items>
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                  </SplitMenuButton>
+                  <Button alignment="CENTER" layoutX="374.0" layoutY="469.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="111.0" style="-fx-background-color: Orange;" text="Submit" textFill="#fff8f8">
+                     <font>
+                        <Font name="Verdana Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField layoutX="147.0" layoutY="33.0" opacity="0.0" prefHeight="25.0" prefWidth="206.0" text="This field is Manadatory*">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

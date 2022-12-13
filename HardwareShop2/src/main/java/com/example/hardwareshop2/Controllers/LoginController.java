@@ -1,6 +1,7 @@
 package com.example.hardwareshop2.Controllers;
 
 import com.example.hardwareshop2.Driver;
+import com.example.hardwareshop2.SignInFormScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -72,7 +73,7 @@ public class LoginController {
                         userToken=0;
                         psdToken=0;
                         try {
-                            Driver.changeScene("MainScreen.fxml");
+                            Driver.stage.setScene(SignInFormScene.getScene());
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
