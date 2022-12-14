@@ -54,7 +54,7 @@
       <Label fx:id="passwordMsg" layoutX="349.0" layoutY="265.0" prefHeight="20.0" prefWidth="220.0" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="275.0" />
       <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="86.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="130.0">
          <image>
-            <Image url="@../../../../../a.jpeg" />
+            <Image url="@/E:/Uni%20folder/Sem%202/Projects/Smester-Projerct/HardwareShop2/src/a.jpeg" />
          </image>
       </ImageView>
    </children>
