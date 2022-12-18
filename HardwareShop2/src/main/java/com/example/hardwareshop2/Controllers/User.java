@@ -1,6 +1,7 @@
 package com.example.hardwareshop2.Controllers;
 
 public class User {
+    static String userStatus="Employee";
     public User(String userType,String userName,String password,String name, Date dateOfJoining) {
         this.name=name;
         this.userType = userType;

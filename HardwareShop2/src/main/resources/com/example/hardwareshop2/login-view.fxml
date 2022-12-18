@@ -7,55 +7,56 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="439.0" prefWidth="675.0" style="-fx-background-image: download.png;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hardwareshop2.Controllers.LoginController">
+<StackPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hardwareshop2.Controllers.LoginController">
    <children>
-      <Region blendMode="LIGHTEN" layoutX="-10.0" style="-fx-background-color: black; -fx-background-color: black;">
-         <effect>
-            <BoxBlur />
-         </effect></Region>
-      <SplitPane prefHeight="439.0" prefWidth="317.0" style="-fx-background-color: orange;" />
-      <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="334.0" layoutY="38.0" prefHeight="26.0" prefWidth="253.0" text="AL REHMAN TRADER" textFill="#181717" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="373.0" AnchorPane.topAnchor="45.0">
-         <font>
-            <Font name="Franklin Gothic Demi" size="23.0" />
-         </font>
-      </Label>
-      <TextField fx:id="username" layoutX="346.0" layoutY="160.0" onMouseClicked="#disapear" prefHeight="26.0" prefWidth="227.0" promptText="Username" AnchorPane.leftAnchor="380.0">
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-         <effect>
-            <Glow />
-         </effect>
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <TextField fx:id="password" layoutX="348.0" layoutY="233.0" onMouseClicked="#disapear" prefHeight="26.0" prefWidth="227.0" promptText="Password" AnchorPane.leftAnchor="380.0">
-         <effect>
-            <Glow />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
-      <Button layoutX="349.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#submitButton" prefHeight="30.0" prefWidth="227.0" style="-fx-background-color: orange;" text="Login" textFill="#f7f0f0" AnchorPane.leftAnchor="380.0">
-         <font>
-            <Font name="Franklin Gothic Demi Cond" size="19.0" />
-         </font>
-      </Button>
-      <Label fx:id="usernameMsg" layoutX="349.0" layoutY="195.0" prefHeight="20.0" prefWidth="227.0" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="205.0" />
-      <Label fx:id="passwordMsg" layoutX="349.0" layoutY="265.0" prefHeight="20.0" prefWidth="220.0" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="275.0" />
-      <ImageView fitHeight="160.0" fitWidth="160.0" layoutX="86.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="130.0">
-         <image>
-            <Image url="@/E:/Uni%20folder/Sem%202/Projects/Smester-Projerct/HardwareShop2/src/a.jpeg" />
-         </image>
-      </ImageView>
+      <AnchorPane prefHeight="439.0" prefWidth="675.0" style="-fx-background-image: download.png;">
+         <children>
+            <Region blendMode="LIGHTEN" layoutX="-10.0" style="-fx-background-color: black; -fx-background-color: black;">
+               <effect>
+                  <BoxBlur />
+               </effect>
+            </Region>
+            <SplitPane prefHeight="439.0" prefWidth="317.0" style="-fx-background-color: orange;" />
+            <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="334.0" layoutY="38.0" prefHeight="26.0" prefWidth="253.0" text="AL REHMAN TRADER" textFill="#181717" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="373.0" AnchorPane.topAnchor="45.0">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="23.0" />
+               </font>
+            </Label>
+            <TextField fx:id="username" layoutX="346.0" layoutY="160.0" onMouseClicked="#disapear" prefHeight="26.0" prefWidth="227.0" promptText="Username" AnchorPane.leftAnchor="380.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <Glow />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="password" layoutX="348.0" layoutY="233.0" onMouseClicked="#disapear" prefHeight="26.0" prefWidth="227.0" promptText="Password" AnchorPane.leftAnchor="380.0">
+               <effect>
+                  <Glow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="loginButton" layoutX="349.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#submitButton" prefHeight="30.0" prefWidth="227.0" style="-fx-background-color: orange;" stylesheets="@../../../../../Style.css" text="Login" textFill="#f7f0f0" AnchorPane.leftAnchor="380.0">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="19.0" />
+               </font>
+            </Button>
+            <Label fx:id="usernameMsg" layoutX="349.0" layoutY="195.0" prefHeight="20.0" prefWidth="227.0" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="205.0" />
+            <Label fx:id="passwordMsg" layoutX="349.0" layoutY="265.0" prefHeight="20.0" prefWidth="220.0" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="275.0" />
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

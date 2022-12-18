@@ -54,11 +54,11 @@ public class LoginController {
         readData();
         passwordMsg.setTextFill(Color.RED);
         usernameMsg.setTextFill(Color.RED);
-        if(username.getText()=="" || password.getText()==""){
-            if(username.getText()==""){
+        if(username.getText().compareTo("")==0 || password.getText().compareTo("")==0){
+            if(username.getText().compareTo("")==0){
                 usernameMsg.setText("Enter Username");
             }
-            if(password.getText()==""){
+            if(password.getText().compareTo("")==0){
                 passwordMsg.setText("Enter Password");
             }
         }
@@ -78,7 +78,16 @@ public class LoginController {
                         psdToken=0;
                         try {
 //                            Driver.stage1.setScene(SignInFormScene.getScene());
+                            if (user.getUserType().compareTo("Admin")==0){
+                                User.userStatus="Admin";
+                            }
+                            else {
+                                User.userStatus="Emplpoyee";
+                            }
+//                            MainScreenController ms=new MainScreenController();
+//                            ms.userAccess();
                             Driver.changeScene("MainView.fxml");
+
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }

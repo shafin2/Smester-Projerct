@@ -88,7 +88,19 @@ public class SignUpController {
         else{
             userTypeError.setOpacity(0);
             String user=Empradio.isSelected()?"Emplpoyee":"Admin";
-            if(nameField.getText()!="" && usernameField.getText()!="" && passwordField.getText()!=""  && confirmpasswordField.getText()!="" ){
+            if(nameField.getText().compareTo("")==0 || usernameField.getText().compareTo("")==0 || passwordField.getText().compareTo("")==0 || confirmpasswordField.getText().compareTo("")==0 ){
+                if (nameField.getText().compareTo("")==0){
+                    nameError.setOpacity(1);
+                }
+                if (usernameField.getText().compareTo("")==0){
+                    usernameError.setOpacity(1);
+                }
+                if (passwordField.getText().compareTo("")==0|| confirmpasswordField.getText().compareTo("")==0){
+                    passwordError.setOpacity(1);
+                    cnfrmpswrdError.setOpacity(1);
+                }
+            }
+            else {
                 if(passwordField.getText().compareTo(confirmpasswordField.getText())==0){
                     try {
                         FileWriter fw=new FileWriter(file,true);
@@ -106,18 +118,6 @@ public class SignUpController {
                     }
                 }
                 else{
-                    passwordError.setOpacity(1);
-                    cnfrmpswrdError.setOpacity(1);
-                }
-            }
-            else {
-                if (nameField.getText()==""){
-                    nameError.setOpacity(1);
-                }
-                if (usernameField.getText()==""){
-                    usernameError.setOpacity(1);
-                }
-                if (passwordField.getText()=="" || confirmpasswordField.getText()==""){
                     passwordError.setOpacity(1);
                     cnfrmpswrdError.setOpacity(1);
                 }

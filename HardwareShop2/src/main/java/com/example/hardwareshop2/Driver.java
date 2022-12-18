@@ -13,13 +13,20 @@ public class Driver extends Application {
     public static void changeScene(String str) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource(str));
         Scene scene=new Scene(fxmlLoader.load());
+        if(str.compareTo("Login-view.fxml")==0){
+            stage1.setResizable(false);
+        }
+        else{
+            stage1.setResizable(true);
+        }
+        stage1.centerOnScreen();
         stage1.setScene(scene);
     }
     @Override
     public void start(Stage stage) throws IOException {
-       this.stage1=stage;
+        this.stage1=stage;
         stage1.setTitle("Al-Rehman Store");
-        changeScene("login-view.fxml");
+        changeScene("Login-view.fxml");
         stage1.show();
     }
 
