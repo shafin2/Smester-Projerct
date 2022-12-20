@@ -7,47 +7,67 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class InventoryController  {
+    public static int sceneStatus=0;
     private static File PTfile=new File("PowerToolsInventory.txt");
     private static File HTfile=new File("HandToolsInventory.txt");
     private static File CTfile=new File("CuttingToolsInventory.txt");
+    private static File SaleFile=new File("SalesData.txt");
     private ArrayList<PowerTools> PowerToolarr=new ArrayList<>();
     private ArrayList<HandTools> HandToolarr=new ArrayList<>();
     private ArrayList<CuttingTools> CuttingToolarr=new ArrayList<>();
+    private ArrayList<Tools> SaleToolarr=new ArrayList<>();
     private ObservableList<Tools> pwoblst=FXCollections.observableArrayList();
     private ObservableList<Tools> htoblst=FXCollections.observableArrayList();
     private ObservableList<Tools> ctoblst=FXCollections.observableArrayList();
+    private ObservableList<Tools> Saleoblst=FXCollections.observableArrayList();
     @FXML
     void initialize() throws IOException {
+        if(sceneStatus==0){
+            InventoryPane.setVisible(true);
+            InventoryTablePane.setVisible(true);
+            SellToolPane.setVisible(false);
+            saleTableBtn.setVisible(false);
+        }
+        else {
+            InventoryPane.setVisible(false);
+            InventoryTablePane.setVisible(true);
+            SellToolPane.setVisible(true);
+        }
         if (User.userStatus.compareTo("Admin")==0){
             AddUserBtn.setVisible(true);
-            CalcBtn.setVisible(true);
-            EmployeeBtn.setVisible(true);
+            deleteItemBtn.setVisible(true);
+            editItemBtn.setVisible(true);
         }
         else {
             AddUserBtn.setVisible(false);
-            CalcBtn.setVisible(false);
-            EmployeeBtn.setVisible(false);
+            deleteItemBtn.setVisible(false);
+            editItemBtn.setVisible(false);
+
         }
         toolCategoryfield.setItems(FXCollections.observableArrayList("Power tools","Cutting tools","Hand tools"));
-       CategoryMenu2.setItems(FXCollections.observableArrayList("Power tools","Cutting tools","Hand tools"));
-       readData();
+        CategoryMenu2.setItems(FXCollections.observableArrayList("Power tools","Cutting tools","Hand tools"));
+        SelltoolCategoryfield1.setItems(FXCollections.observableArrayList("Power tools","Cutting tools","Hand tools"));
+        readData();
     }
     public void readData(){
         PowerToolarr=FileHandling.readFile(PTfile);
         HandToolarr=FileHandling.readFile(HTfile);
         CuttingToolarr=FileHandling.readFile(CTfile);
+        SaleToolarr=FileHandling.readFile(SaleFile);
         populateobslst();
     }
     public void populateobslst(){
         pwoblst.clear();
         htoblst.clear();
         ctoblst.clear();
+        Saleoblst.clear();
         for(PowerTools p:PowerToolarr){
             pwoblst.add(new Tools(p.getToolId(),p.getToolName(),p.getToolQuantity(),p.getPricePerUnit(),p.getTotalAmount()));
         }
@@ -57,24 +77,30 @@ public class InventoryController  {
         for(CuttingTools p:CuttingToolarr){
             ctoblst.add(new Tools(p.getToolId(),p.getToolName(),p.getToolQuantity(),p.getPricePerUnit(),p.getTotalAmount()));
         }
+        for(Tools p:SaleToolarr){
+            Saleoblst.add(new Tools(p.getToolId(),p.getToolName(),p.getToolQuantity(),p.getPricePerUnit(),p.getTotalAmount()));
+        }
     }
+    @FXML
+    private AnchorPane InventoryPane;
+    @FXML
+    private Button saleTableBtn;
+    @FXML
+    private AnchorPane InventoryTablePane;
+
+    @FXML
+    private AnchorPane SellToolPane;
     @FXML
     private Button AddUserBtn;
 
-    @FXML
-    private Button CalcBtn;
 
     @FXML
     private ComboBox<String> CategoryMenu2;
 
-    @FXML
-    private Button EmployeeBtn;
 
     @FXML
     private Button addItemBtn;
 
-    @FXML
-    private DatePicker dateField;
 
     @FXML
     private Button deleteItemBtn;
@@ -98,6 +124,13 @@ public class InventoryController  {
     private TextField unitPriceField;
     @FXML
     private TableView<Tools> TableView;
+
+    @FXML
+    private AnchorPane SalesTablewindow;
+
+    @FXML
+    private TableView<Tools> SellTableview;
+
     @FXML
     private TableColumn<Tools, Integer> TableToolId;
 
@@ -113,6 +146,20 @@ public class InventoryController  {
     @FXML
     private TableColumn<Tools,Double> TableTotalPrice;
     @FXML
+    private TableColumn<Tools, Integer> TableToolId1;
+
+    @FXML
+    private TableColumn<Tools, String> TableToolName1;
+
+    @FXML
+    private TableColumn<Tools, Double> TableToolPricePerUnit1;
+
+    @FXML
+    private TableColumn<Tools, Integer> TableToolQuantity1;
+
+    @FXML
+    private TableColumn<Tools,Double> TableTotalPrice1;
+    @FXML
     private Label toolpriceError;
 
     @FXML
@@ -121,6 +168,37 @@ public class InventoryController  {
     private Label toolnameError;
     @FXML
     private Label toolCategoryError;
+    @FXML
+    private Button SellItemBtn;
+
+    @FXML
+    private Button SelldeleteItemBtn;
+
+    @FXML
+    private Button SelleditItemBtn;
+
+    @FXML
+    private ComboBox<String> SelltoolCategoryfield1;
+
+    @FXML
+    private Button SelltoolIdSearch;
+
+    @FXML
+    private TextField SelltoolQuantityField1;
+
+    @FXML
+    private TextField SelltoolidField;
+
+    @FXML
+    private TextField SelltoolnameField;
+
+    @FXML
+    private TextField SellunitPriceField1;
+
+    @FXML
+    void HomeClick(MouseEvent event) throws IOException {
+        Driver.changeScene("MainView.fxml");
+    }
     @FXML
     void AddUser(MouseEvent event) throws IOException {
         Driver.changeScene("SignUp.fxml");
@@ -132,23 +210,21 @@ public class InventoryController  {
     }
 
     @FXML
-    void CalculationClick(MouseEvent event) {
+    void CalculationClick(MouseEvent event) throws IOException {
+        Driver.changeScene("Calculations.fxml");
+    }
 
+
+    @FXML
+    void InventoryClick(MouseEvent event) throws IOException {
+        InventoryController.sceneStatus=0;
+        Driver.changeScene("Inventory.fxml");
     }
 
     @FXML
-    void EmployeeClick(MouseEvent event) {
-
-    }
-
-    @FXML
-    void InventoryClick(MouseEvent event) {
-
-    }
-
-    @FXML
-    void SellClick(MouseEvent event) {
-
+    void SellClick(MouseEvent event) throws IOException {
+        InventoryController.sceneStatus=1;
+        Driver.changeScene("Inventory.fxml");
     }
     @FXML
     void addItemBtn(MouseEvent event) {
@@ -322,8 +398,15 @@ public class InventoryController  {
                     toolnameField.setText(rowData.getToolName());
                     toolQuantityField.setText(Integer.toString(rowData.getToolQuantity()));
                     unitPriceField.setText(Double.toString(rowData.getPricePerUnit()));
-                    SingleSelectionModel s=CategoryMenu2.getSelectionModel();
+//                    SingleSelectionModel s=CategoryMenu2.getSelectionModel();
                     toolCategoryfield.setValue(CategoryMenu2.getValue());
+
+                    SelltoolidField.setText(Integer.toString(rowData.getToolId()));
+                    selltoolid=rowData.getToolId();
+                    SelltoolnameField.setText(rowData.getToolName());
+                    SellunitPriceField1.setText(Double.toString(rowData.getPricePerUnit()));
+                    SelltoolCategoryfield1.setValue(CategoryMenu2.getValue());
+
                 }
             });
             return row ;
@@ -334,18 +417,7 @@ public class InventoryController  {
         clearField();
         clearError();
     }
-    public void clearError(){
-        toolCategoryError.setText("");
-        toolnameError.setText("");
-        toolpriceError.setText("");
-        toolquantityError.setText("");
-    }
-    public void clearField(){
-        toolnameField.setText("");
-        unitPriceField.setText("");
-        toolQuantityField.setText("");
-        toolidField.setText("");
-    }
+
     @FXML
     void fullScreenClick(MouseEvent event) {
         clearError();
@@ -418,7 +490,9 @@ public class InventoryController  {
             TableTotalPrice.setCellValueFactory(new PropertyValueFactory<Tools,Double>("totalAmount"));
             TableView.setItems(htoblst);
         }
+
     }
+
     public int checkIfToolExist(ObservableList<Tools> lst,String toolname){
         int exist=0;
         for (Tools t:lst){
@@ -428,5 +502,186 @@ public class InventoryController  {
             }
         }
         return exist;
+    }
+
+
+
+
+    //Selling Portion
+    @FXML
+    void SellItemBtn(MouseEvent event) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, "First search or select Tool");
+        if(SelltoolCategoryfield1.getSelectionModel().getSelectedItem()==null || SelltoolnameField.getText().compareTo("")==0 || SellunitPriceField1.getText().compareTo("")==0){
+            alert.showAndWait();
+        }
+        else {
+            if(SelltoolQuantityField1.getText().compareTo("")==0){
+                alert.setContentText("Add Quantity");
+                alert.showAndWait();
+            }
+            else {
+                if (Integer.parseInt(SelltoolidField.getText())==selltoolid){
+                    Tools t=new Tools(selltoolid,SelltoolnameField.getText(), Integer.parseInt(SelltoolQuantityField1.getText()), Double.parseDouble(SellunitPriceField1.getText()),Integer.parseInt(SelltoolQuantityField1.getText())*Double.parseDouble(SellunitPriceField1.getText()));
+                    if(selltoolid>=1000 && selltoolid<2000){
+                        editFilewrtSale(PowerToolarr,PTfile,t);
+                    }
+                    else if (selltoolid>=2000 && selltoolid<3000){
+                        editFilewrtSale(CuttingToolarr,CTfile,t);
+                    }
+                    else if (selltoolid>=3000 && selltoolid<4000) {
+                        editFilewrtSale(HandToolarr,HTfile,t);
+
+                    }
+                    else {
+                        SelltoolIdError.setText("Your tool id is out of range");
+                    }
+                }
+                else {
+                    alert.setContentText("You change id");
+                    alert.showAndWait();
+                    clearField();
+                    clearError();
+                }
+            }
+        }
+
+        clearField();
+        clearError();
+        showTools();
+    }
+
+    @FXML
+    void SelldeleteItemBtn(MouseEvent event) {
+
+    }
+
+    @FXML
+    void SelleditItemBtn(MouseEvent event) {
+
+    }
+    @FXML
+    private Label SelltoolIdError;
+
+    static int selltoolid=0;
+    @FXML
+    void SelltoolIdSearch(MouseEvent event) {
+        SelltoolIdError.setText("");
+        if(SelltoolidField.getText().compareTo("")==0){
+            SelltoolIdError.setText("Enter tool id");
+        }
+        else {
+            int id=Integer.parseInt(SelltoolidField.getText());
+            int check=0;
+            if(id>=1000 && id<2000){
+                check=checktool(pwoblst,id);
+                SelltoolCategoryfield1.setValue("Power Tool");
+
+            }
+            else if (id>=2000 && id<3000){
+                check=checktool(ctoblst,id);
+                SelltoolCategoryfield1.setValue("Cutting Tools");
+
+            }
+            else if (id>=3000 && id<4000) {
+                check=checktool(htoblst,id);
+                SelltoolCategoryfield1.setValue("Hand Tools");
+
+            }
+            else {
+                SelltoolIdError.setText("Your tool id is out of range");
+            }
+        }
+    }
+    public int checktool(ObservableList<Tools> lst,int id){
+        int exist=0;
+        for (Tools t:lst){
+            if (t.getToolId()==id){
+                if (t.getToolQuantity()>0){
+                    exist=1;
+                    selltoolid=id;
+                    SelltoolnameField.setText(t.getToolName());
+                    SellunitPriceField1.setText(Double.toString(t.getPricePerUnit()));
+                }
+                else {
+                    clearError();
+                    clearField();
+                }
+                break;
+            }
+        }
+        return exist;
+    }
+    @FXML
+    void saleTableBtn(MouseEvent event) {
+        if(InventoryTablePane.isVisible()){
+            readSaleData();
+            InventoryTablePane.setVisible(false);
+            SalesTablewindow.setVisible(true);
+            saleTableBtn.setText("Tools");
+        }
+        else {
+            InventoryTablePane.setVisible(true);
+            SalesTablewindow.setVisible(false);
+            saleTableBtn.setText("Sales");
+        }
+    }
+    void readSaleData(){
+        readData();
+        TableToolId1.setCellValueFactory(new PropertyValueFactory<Tools,Integer>("toolId"));
+        TableToolName1.setCellValueFactory(new PropertyValueFactory<Tools,String>("toolName"));
+        TableToolPricePerUnit1.setCellValueFactory(new PropertyValueFactory<Tools,Double>("pricePerUnit"));
+        TableToolQuantity1.setCellValueFactory(new PropertyValueFactory<Tools,Integer>("toolQuantity"));
+        TableTotalPrice1.setCellValueFactory(new PropertyValueFactory<Tools,Double>("totalAmount"));
+        SellTableview.setItems(Saleoblst);
+    }
+    public void clearError(){
+        toolCategoryError.setText("");
+        toolnameError.setText("");
+        toolpriceError.setText("");
+        toolquantityError.setText("");
+        SelltoolIdError.setText("");
+    }
+    public void clearField(){
+        toolnameField.setText("");
+        unitPriceField.setText("");
+        toolQuantityField.setText("");
+        toolidField.setText("");
+        SelltoolnameField.setText("");
+        SellunitPriceField1.setText("");
+        SelltoolidField.setText("");
+        SelltoolQuantityField1.setText("");
+        SelltoolCategoryfield1.setValue("");
+    }
+    public <T extends Tools> void editFilewrtSale(ArrayList<T> arr,File file,Tools t){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Tool sell");
+        for (T p:arr){
+            if(p.getToolId()==t.getToolId()){
+                if(t.getToolQuantity()>p.getToolQuantity()){
+                    alert.setContentText("That tool quantity is 0 in inventory!");
+                    alert.setAlertType(Alert.AlertType.ERROR);
+                    alert.showAndWait();
+                }
+                else {
+                    int q=p.getToolQuantity()-t.getToolQuantity();
+                    p.setToolQuantity(q);
+                    p.setTotalAmount(q*p.getPricePerUnit());
+                    FileHandling.AddNewTool(SaleFile,t,true);
+                    alert.setContentText("Tool sell");
+                    alert.showAndWait();
+                }
+                break;
+            }
+        }
+        int clear=0;
+        for (T p1:arr){
+            if(clear==0){
+                FileHandling.AddNewTool(file,p1,false);
+                clear++;
+            }
+            else{
+                FileHandling.AddNewTool(file,p1,true);
+            }
+
+        }
     }
 }

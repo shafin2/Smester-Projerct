@@ -18,6 +18,7 @@ public class Driver extends Application {
         }
         else{
             stage1.setResizable(true);
+//            stage1.setMaximized(true);
         }
         stage1.centerOnScreen();
         stage1.setScene(scene);
@@ -26,7 +27,7 @@ public class Driver extends Application {
     public void start(Stage stage) throws IOException {
         this.stage1=stage;
         stage1.setTitle("Al-Rehman Store");
-        changeScene("Login-view.fxml");
+        changeScene("login-view.fxml");
         stage1.show();
     }
 

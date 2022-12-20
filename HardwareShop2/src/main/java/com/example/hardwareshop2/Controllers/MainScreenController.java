@@ -12,24 +12,18 @@ public class MainScreenController {
         void initialize() {
             if (User.userStatus.compareTo("Admin")==0){
                 AddUserBtn.setVisible(true);
-                CalcBtn.setVisible(true);
-                EmployeeBtn.setVisible(true);
             }
             else {
                 AddUserBtn.setVisible(false);
-                CalcBtn.setVisible(false);
-                EmployeeBtn.setVisible(false);
             }
         }
         @FXML
         private Button AddUserBtn;
 
         @FXML
-        private Button CalcBtn;
-
-        @FXML
-        private Button EmployeeBtn;
-
+        void HomeClick(MouseEvent event) throws IOException {
+            Driver.changeScene("MainView.fxml");
+        }
         @FXML
         void AddUser(MouseEvent event) throws IOException {
             Driver.changeScene("SignUp.fxml");
@@ -40,23 +34,21 @@ public class MainScreenController {
             Driver.changeScene("login-view.fxml");
         }
 
-    @FXML
-    void CalculationClick(MouseEvent event) {
+        @FXML
+        void CalculationClick(MouseEvent event) throws IOException {
+            Driver.changeScene("Calculations.fxml");
+        }
 
-    }
 
-    @FXML
-    void EmployeeClick(MouseEvent event) {
+        @FXML
+        void InventoryClick(MouseEvent event) throws IOException {
+            InventoryController.sceneStatus=0;
+            Driver.changeScene("Inventory.fxml");
+        }
 
-    }
-
-    @FXML
-    void InventoryClick(MouseEvent event) throws IOException {
-        Driver.changeScene("Inventory.fxml");
-    }
-
-    @FXML
-    void SellClick(MouseEvent event) {
-
-    }
+        @FXML
+        void SellClick(MouseEvent event) throws IOException {
+            InventoryController.sceneStatus=1;
+            Driver.changeScene("Inventory.fxml");
+        }
 }
