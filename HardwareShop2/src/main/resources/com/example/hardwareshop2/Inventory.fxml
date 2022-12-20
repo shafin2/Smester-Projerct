@@ -95,7 +95,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button fx:id="SelleditItemBtn" alignment="CENTER" layoutX="151.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#SelleditItemBtn" prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: Orange;" text="Edit" textFill="#fff8f8">
+                                    <Button fx:id="SelleditItemBtn" alignment="CENTER" layoutX="151.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#SelleditItemBtn" prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: Orange;" text="Edit" textFill="#fff8f8" visible="false">
                                        <font>
                                           <Font name="Verdana Bold" size="17.0" />
                                        </font>
@@ -103,7 +103,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button fx:id="SelldeleteItemBtn" alignment="CENTER" layoutX="265.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#SelldeleteItemBtn" prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: Orange;" text="Delete" textFill="#fff8f8">
+                                    <Button fx:id="SelldeleteItemBtn" alignment="CENTER" layoutX="265.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#SelldeleteItemBtn" prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: Orange;" text="Delete" textFill="#fff8f8" visible="false">
                                        <font>
                                           <Font name="Verdana Bold" size="17.0" />
                                        </font>
@@ -301,9 +301,9 @@
                                     </Button>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="SalesTablewindow" visible="false">
+                              <AnchorPane fx:id="SalesTablewindow">
                                  <children>
-                                    <TableView fx:id="SellTableview" layoutX="48.0" layoutY="71.0" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0">
+                                    <TableView fx:id="SellTableview" layoutX="48.0" layoutY="103.0" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0">
                                        <columns>
                                           <TableColumn fx:id="TableToolId1" prefWidth="73.0" text="Tool ID" />
                                           <TableColumn fx:id="TableToolName1" prefWidth="186.0" text="Tool Name" />
@@ -315,6 +315,11 @@
                                     <Label layoutX="48.0" layoutY="22.0" text="Previous Sales" textFill="ORANGE">
                                        <font>
                                           <Font name="Arial Bold" size="26.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="61.0" layoutY="59.0" prefHeight="31.0" prefWidth="339.0" text="*Select and press D to delete sales" textFill="ORANGE">
+                                       <font>
+                                          <Font name="Arial Bold" size="14.0" />
                                        </font>
                                     </Label>
                                  </children>

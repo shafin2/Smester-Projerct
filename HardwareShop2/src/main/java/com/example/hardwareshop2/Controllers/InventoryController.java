@@ -3,9 +3,12 @@ package com.example.hardwareshop2.Controllers;
 import com.example.hardwareshop2.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -34,10 +37,12 @@ public class InventoryController  {
             InventoryTablePane.setVisible(true);
             SellToolPane.setVisible(false);
             saleTableBtn.setVisible(false);
+            SalesTablewindow.setVisible(false);
         }
         else {
             InventoryPane.setVisible(false);
             InventoryTablePane.setVisible(true);
+            SalesTablewindow.setVisible(false);
             SellToolPane.setVisible(true);
         }
         if (User.userStatus.compareTo("Admin")==0){
@@ -55,6 +60,7 @@ public class InventoryController  {
         CategoryMenu2.setItems(FXCollections.observableArrayList("Power tools","Cutting tools","Hand tools"));
         SelltoolCategoryfield1.setItems(FXCollections.observableArrayList("Power tools","Cutting tools","Hand tools"));
         readData();
+        sellwlatableaction();
     }
     public void readData(){
         PowerToolarr=FileHandling.readFile(PTfile);
@@ -388,6 +394,7 @@ public class InventoryController  {
         showTools();
 
     }
+
     public void tableActions(){
         TableView.setRowFactory( tv -> {
             TableRow<Tools> row = new TableRow<>();
@@ -613,6 +620,7 @@ public class InventoryController  {
     }
     @FXML
     void saleTableBtn(MouseEvent event) {
+        sellwlatableaction();
         if(InventoryTablePane.isVisible()){
             readSaleData();
             InventoryTablePane.setVisible(false);
@@ -684,4 +692,68 @@ public class InventoryController  {
 
         }
     }
+
+    public void sellwlatableaction(){
+        SellTableview.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode().equals(KeyCode.D)) {
+                    Tools rowData = (Tools) SellTableview.getSelectionModel().getSelectedItem();
+                    int id=rowData.getToolId();
+                    if(id>=1000 && id<2000){
+                        deleteFilewrtSale(PowerToolarr,PTfile,rowData);
+                    }
+                    else if (id>=2000 && id<3000){
+                        deleteFilewrtSale(CuttingToolarr,CTfile,rowData);
+                    }
+                    else if (id>=3000 && id<4000) {
+                        deleteFilewrtSale(HandToolarr,HTfile,rowData);
+
+                    }
+                }
+            }
+        });
+
+    }
+    public <T extends Tools> void deleteFilewrtSale(ArrayList<T> arr,File file,Tools t){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Tool deleted");
+        for (T p:arr){
+            if(p.getToolId()==t.getToolId()){
+                int q=p.getToolQuantity()+t.getToolQuantity();
+                p.setToolQuantity(q);
+                p.setTotalAmount(q*p.getPricePerUnit());
+                break;
+            }
+        }
+        for (Tools p1:SaleToolarr){
+            if(p1.getToolId()==t.getToolId() && p1.getToolQuantity()==t.getToolQuantity()){
+                SaleToolarr.remove(p1);
+                System.out.println(SaleToolarr);
+                alert.showAndWait();
+                break;
+            }
+        }
+        int clear=0;
+        for (T p1:arr){
+            if(clear==0){
+                FileHandling.AddNewTool(file,p1,false);
+                clear++;
+            }
+            else{
+                FileHandling.AddNewTool(file,p1,true);
+            }
+        }
+        int clear2=0;
+        for (Tools p1:SaleToolarr){
+            if(clear2==0){
+                FileHandling.AddNewTool(SaleFile,p1,false);
+                clear2++;
+            }
+            else{
+                FileHandling.AddNewTool(SaleFile,p1,true);
+            }
+        }
+        readSaleData();
+    }
+
 }
