@@ -4,11 +4,14 @@ import com.example.hardwareshop2.Driver;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.scene.paint.Color;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +19,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class MainScreenController {
+        static String news="";
         @FXML
         void initialize() {
             if (User.userStatus.compareTo("Admin")==0){
@@ -24,6 +28,7 @@ public class MainScreenController {
             else {
                 AddUserBtn.setVisible(false);
             }
+            newsTextAreaa.setText(news);
         }
         @FXML
         private Button AddUserBtn;
@@ -60,10 +65,7 @@ public class MainScreenController {
             Driver.changeScene("Inventory.fxml");
         }
         @FXML
-        private Label news1;
-
-        @FXML
-        private Label news2;
+        private TextArea newsTextAreaa;
 
         @FXML
         private Button reloadBtn;
@@ -88,13 +90,12 @@ public class MainScreenController {
             List<WebElement> myList=driver.findElements(By.className("latest-right"));
             List<String> all_elements_text=new ArrayList<>();
             //taking text out of web elements and store in list
+
             for(int i=0; i<myList.size(); i++){
-                all_elements_text.add(myList.get(i).getText());
+                news+=i+1 + ")" +"\n" + myList.get(i).getText() + "\n";
+//                all_elements_text.add(myList.get(i).getText());
             }
-            //printing one of them
-//            System.out.println(all_elements_text.get(0));
-            news1.setText(all_elements_text.get(0));
-            news1.setText(all_elements_text.get(1));
+            newsTextAreaa.setText(news);
             driver.close();
         }
 }

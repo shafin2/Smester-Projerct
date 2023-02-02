@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoginController {
-    static File file=new File("src/main/Files/LoginDetails.txt");
+    static File file=new File("LoginDetails.txt");
     static private ArrayList<User> users=new ArrayList<>();
 
     static {
